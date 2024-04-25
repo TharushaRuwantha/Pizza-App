@@ -1,118 +1,166 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
+  Alert,
+  Button,
   StyleSheet,
   Text,
-  useColorScheme,
+  TextInput,
   View,
+  VirtualizedList,
 } from 'react-native';
+import CustomLable from './scr/components/CustomLable';
+import MyComponent from './scr/components/MyComponent';
+import Login from './scr/components/Login';
+import SampleLogin from './scr/components/SampleLogin';
+import Signup from './scr/components/Signup';
+import Appnavigation from './scr/Navigations/Appnavigation';
+import {DefaultTheme, PaperProvider} from 'react-native-paper';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Stack = createStackNavigator();
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'orange',
+    secondary: 'yellow',
+  },
+};
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <PaperProvider theme={theme}>
+      <Appnavigation />
+    </PaperProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+const sty = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
 });
 
 export default App;
+
+// video 14
+
+{
+  /* <View style={{alignItems: 'center'}}>
+      <Text>hello</Text>
+      <TextInput
+        style={{
+          backgroundColor: 'black',
+          color: 'white',
+          width: 300,
+        }}
+        placeholder="User Name"
+        placeholderTextColor={'#ddd'}
+      />
+    </View> */
+}
+
+//Video 13
+
+// function App(): React.JSX.Element {
+//   console.log('Main App is Rendered');
+//   const [count, setCount] = useState(0);
+
+//   function changeCount() {
+//     setCount(count + 1);
+//   }
+
+//   return (
+//     <View style={{ alignItems: 'center' }}>
+//       <Button title='Click Me' onPress={changeCount} />
+//     </View>
+//   );
+// };
+
+// function Component1() {
+//   console.log('Component 1 is Rendered');
+//   return <Text style={{ fontSize: 30 ,color:'#000'}}>Component 1</Text>;
+// };
+
+// function Component2() {
+//   console.log('Component 2 is Rendered');
+//   return <Text style={{ fontSize: 30,color:'#000'}}>Component 2</Text>;
+// };
+
+//video 11
+// function App(): React.JSX.Element {
+//   return (
+//     <View style={{alignItems: 'center'}}>
+//       <TextInput
+//         style={{
+//           backgroundColor: '#aaa',
+//           color: '#000',
+//           width: 300,
+//           marginTop: 50,
+//           borderRadius:40,
+//           paddingLeft:20,
+
+//         }}
+//         placeholder='User Name'
+//         placeholderTextColor={'#ddd'}
+//       />
+//       <TextInput
+//         style={{
+//           backgroundColor: '#aaa',
+//           color: '#000',
+//           width: 300,
+//           marginTop: 50,
+//           borderRadius:40,
+//           paddingLeft:20,
+
+//         }}
+//         secureTextEntry={true}
+//         placeholder='Password'
+//         placeholderTextColor={'#ddd'}
+//       />
+//     </View>
+//   );
+// }
+
+// video 10
+
+//   function click(value:any){
+//     console.log(value);
+//   }
+//   return (
+//     <View style={{alignItems: 'center'}}>
+//      <Button title='Click Me' onPress={()=>{
+//       click('react  native');
+//      }}/>
+
+//     </View>
+//   );
+// }
+
+// function App(): React.JSX.Element {
+//   return (
+//     <View style={{alignItems: 'center'}}>
+//       <CustomLable>Welcome</CustomLable>
+//       <CustomText fsize={60} a={'Hello'} b={'world'} />
+//     </View>
+//   );
+// }
+
+// type CustomTextProps = {
+//   fsize?:number;
+//   a:string;
+//   b:string;
+// }
+
+// function CustomText(props: CustomTextProps) {
+//   return (
+//     <Text style={{fontSize: props.fsize}}>
+//       {props.a} {props.b}
+//     </Text>
+//   );
+// }
+
+// export default App;
